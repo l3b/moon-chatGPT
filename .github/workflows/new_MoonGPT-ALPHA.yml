@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://moonappacr-agg8b9h6gxdgd5aj.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_dd6179a61afc4f68a296b463100d0946 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_b32e644d7e584b4393c42568bbc5117b }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_7c66471669f74d8cba4ac587884671f1 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_1bd24775660c4c76a531fe065f122873 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: moonappacr-agg8b9h6gxdgd5aj.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_dd6179a61afc4f68a296b463100d0946 }}/moon:${{ github.sha }}
+        tags: moonappacr-agg8b9h6gxdgd5aj.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7c66471669f74d8cba4ac587884671f1 }}/sample-app-aoai-chatgpt:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'MoonGPT-ALPHA'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e0d5d954bffe45579ace9cab846500b5 }}
-        images: 'moonappacr-agg8b9h6gxdgd5aj.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_dd6179a61afc4f68a296b463100d0946 }}/moon:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_da7f1c5effbb479197fe76e582b0377a }}
+        images: 'moonappacr-agg8b9h6gxdgd5aj.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7c66471669f74d8cba4ac587884671f1 }}/sample-app-aoai-chatgpt:${{ github.sha }}'
